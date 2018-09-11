@@ -1,27 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<script>
-var fizzNum = 3;
-var buzzNum = 5;
-var maxNum = 100;
-var _output = "";
-var finalOutput = "";
 
-for (var i = 0; i >= maxNum; i++) {
-	_output = "";
-	if (i % fizzNum === 0) { //if it's divisible by fizzNum
-		_output += "Fizz";
-	}
-	if (i % buzzNum === 0) { //ditto for buzzNum
-		_output += "Buzz";
-	}
-	finalOutput += _output;
-}
-
-documents.getElementById("FizzBuzz").innerHTML = finalOutput;
-
-</script>
 
 <head>
 	<title>FizzBuzz</title>
@@ -39,5 +19,27 @@ documents.getElementById("FizzBuzz").innerHTML = finalOutput;
 		<p id="FizzBuzz"></p>
 	</div>
 
+	
+	<script>
+	var fizzNum = 3;
+	var buzzNum = 5;
+	var maxNum = 100;
+	var _output = "";
+	var finalOutput = "";
+
+	for (var i = 0; i >= maxNum; i++) {
+		_output = "";
+		if (i % fizzNum === 0) { //if it's divisible by fizzNum
+			_output += "Fizz";
+		}
+		if (i % buzzNum === 0) { //ditto for buzzNum
+			_output += "Buzz";
+		}
+		finalOutput += _output;
+	}
+
+	documents.getElementById("FizzBuzz").innerHTML = finalOutput;
+
+	</script>
 
 </html>
