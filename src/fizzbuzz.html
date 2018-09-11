@@ -9,6 +9,10 @@
 </head>
 
 <body>
+
+	
+	
+	
 	<div class="header">
 		<h1>FizzBuzz</h1>
 		<h2>As suggested by Tom Scott.</h2>
@@ -16,30 +20,50 @@
 	</div>
 	
 	<div class="body">
-		<p id="FizzBuzz"></p>
+		<p id="fizzbuzz"></p>
 	</div>
 
-	
-	<script>
-	var fizzNum = 3;
-	var buzzNum = 5;
-	var maxNum = 100;
-	var _output = "";
-	var finalOutput = "";
+</body>
 
-	for (var i = 0; i >= maxNum; i++) {
-		_output = "";
-		if (i % fizzNum === 0) { //if it's divisible by fizzNum
-			_output += "Fizz";
-		}
-		if (i % buzzNum === 0) { //ditto for buzzNum
-			_output += "Buzz";
-		}
-		finalOutput += _output;
+<script>
+var fizzNum = 3;
+var buzzNum = 5;
+var maxNum = 100;
+var _output = "";
+var outputs = [];
+var finalOutput = "";
+
+for (var i = 1; i <= maxNum; i++) {
+	_output = "";
+	if (i % fizzNum === 0) { //if it's divisible by fizzNum
+		_output += "<span style=\"color: red;\">Fizz</span>";
 	}
+	if (i % buzzNum === 0) { //ditto for buzzNum
+		_output += "<span style=\"color: blue;\">Buzz</span>";
+	}
+	if (i % fizzNum !== 0 && i % buzzNum !== 0) {
+		_output += i;
+	}
+	outputs.push(_output + "<br>");
+}
 
-	documents.getElementById("FizzBuzz").innerHTML = finalOutput;
+/*
+for (i in outputs) {
+	document.getElementById("fizzbuzz").innerHTML = outputs[i];
+}
+*/
 
-	</script>
+i = 0;
+function f() {
+	finalOutput += outputs[i];
+	document.getElementById("fizzbuzz").innerHTML = finalOutput;
+	i++;
+	if (i < outputs.length) {
+		setTimeout(f, 150);
+	}
+}
+f();
+
+</script>
 
 </html>
