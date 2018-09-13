@@ -12,6 +12,8 @@
 			bottom: 10px;
 			
 			border: 2px solid #7B7985;
+			
+			display: inline-block;
 		}
 	
 	</style>
@@ -26,24 +28,27 @@
 		<p>This webpage is intended to teach you about the learning process.</p>
 		<p>You will start out knowing absolutely nothing about the nature of these puzzles. By the end, however, you will be very good at them.</p>
 		<p>Then, you will discuss the way you got a handle on the puzzles with the rest of the class, and finally solve a puzzle together.</p>
-		<p>I'm going to have to authorize you to let you in, for security reasons. If I knew another way to do this, I would use it.</p>
-		<div class="passcode">
+		<p>I'm going to have to authorize you to let you in, for security reasons. Sorry! (I wish I knew how to disable it.)</p>
+		<div class="passcode" id="passcode">
 			<div id="passcode_start">
-			<form>
-				Enter password:<br>
-				<input type="password" name="absolutebs"><br>
-			</form>
-			<a id="aside_link" href="javascript:void(0);" onclick="startGame('a');">Submit </a> 
-			<a id="bside_link" href="javascript:void(0);" onclick="startGame('b');" style="display: inline;">Password</a>
+				<form>
+					Enter password:<br>
+					<input type="password" name="absolutebs"><br>
+				</form>
+				<a id="aside_link" href="javascript:void(0);" onclick="startGame('a');">Submit </a> 
+				<a id="bside_link" href="javascript:void(0);" onclick="startGame('b');" style="display: inline;">Password</a>
 			</div>
+			
 			<div id="passcode_end">
 				<p>Passcode authorized.</p>
 			</div>
 		</div>
 		
 		<div id="game">
-			<canvas id="canvas"></canvas>
-			<div style = "float: right;">
+			<div style="float: left;">
+				<canvas id="canvas"></canvas>
+			</div>
+			<div style = "overflow: hidden; position: relative; left: 10px;">
 				<h3>Controls:</h3>
 				<ul>
 					<li>WASD or Arrow Keys: Move
@@ -51,7 +56,8 @@
 				</ul>
 				<p>A red-lined tile means <br>it wasn't solved correctly.</p>
 			</div>
-		<div>
+		</div>
+		
 	</div>
 	<script type="text/javascript" src="the_learning_process.js"></script>
 </body>

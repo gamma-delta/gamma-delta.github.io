@@ -28,6 +28,8 @@ canvas {
 	
 	background-color: #231B40;
 	border: 2px solid #7B7985;
+	
+	overflow: hidden;
 }
 
 

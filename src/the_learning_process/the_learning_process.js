@@ -85,9 +85,6 @@ var player = {
 		for (var i in current_puzzle.tiles) { current_puzzle.tiles[i].errorCooldown = 0; }
 			advancePuzzle(false);
 			break;
-		default:
-			console.log("Key pressed: " + event.keyCode);
-			break;
 		}
 		if (_didWalk) {
 			getTileAtPosition(this.x, this.y).walked--; //walking on this tile
@@ -255,9 +252,9 @@ var puzzle_05a = new Puzzle([//two colors, (order)
 "....."
 ]);
 var puzzle_06a = new Puzzle([//different numbers, any first
-"#####",
-"s}}{e",
-"#####"
+"#{#{#",
+"s###e",
+"##}##"
 ]);
 var puzzle_07a = new Puzzle([//all of one color first
 "#}#}#",
@@ -341,7 +338,7 @@ var puzzle_08b = new Puzzle([ //different numbers
 ]);
 
 var puzzle_09b = new Puzzle([ //one final test of mastery
-"s####",
+"s###{",
 "}#{##",
 "e}##{"
 ]);
@@ -383,9 +380,9 @@ function advancePuzzle(checkErrors = true) {
 		
 		var _fadeInterval = setInterval(function() {
 			if (_fadeSwitch) {
-				_fadeBlack -= 0.2;
+				_fadeBlack -= 0.3;
 			} else {
-				_fadeBlack += 0.2;
+				_fadeBlack += 0.3;
 			}
 			
 			if (_fadeBlack <= 0) {
@@ -393,7 +390,7 @@ function advancePuzzle(checkErrors = true) {
 				loadPuzzle(current_puzzle);
 			}
 			
-			if (_fadeBlack === 1 && !_fadeSwitch) {
+			if (_fadeBlack >= 1 && !_fadeSwitch) {
 				clearInterval(_fadeInterval);
 			}
 			document.getElementById("canvas").style.filter = "brightness(" + _fadeBlack + ")";
@@ -530,10 +527,16 @@ function advancePuzzle(checkErrors = true) {
 	}
 }
 
+var _authCooldown = 100;
 function updateGameArea() {
 	gameArea.clear();
 	for (var i = 0; i < current_puzzle.tiles.length; i++) {
 		current_puzzle.tiles[i].update();
 	}
 	player.update();
+	if (_authCooldown > 0) {
+		_authCooldown--;
+	} else if (_authCooldown === 0) {
+		document.getElementById("passcode").style.display = "none";
+	}
 }
