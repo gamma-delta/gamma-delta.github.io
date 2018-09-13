@@ -247,9 +247,9 @@ var puzzle_04a = new Puzzle([//collect all tiles
 ".#{#."
 ]);
 var puzzle_05a = new Puzzle([//two colors, (order)
-".....",
+".###.",
 "s{#}e",
-"....."
+".###."
 ]);
 var puzzle_06a = new Puzzle([//different numbers, any first
 "#{#{#",
