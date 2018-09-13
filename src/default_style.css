@@ -1,13 +1,18 @@
 html {
 	background-color: #050211;
+	color: #CCCAD7;
 	font-family: "Lucida Console", Monaco, monospace;
+}
+
+canvas {
+	border: 2px solid #7B7985;
+	background-color: #050211;
 }
 
 .header {
 	position: relative;
 	padding: 2px;
 	
-	color: #CCCAD7;
 	text-align: center;
 	font-weight: bold;
 	
@@ -20,8 +25,6 @@ html {
 	position: relative;
 	top: 20px;
 	padding: 10px 20px;
-	
-	color: #CCCAD7;
 	
 	background-color: #231B40;
 	border: 2px solid #7B7985;
