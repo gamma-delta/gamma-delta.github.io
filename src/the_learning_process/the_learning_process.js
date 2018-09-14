@@ -304,9 +304,9 @@ var puzzle_02b = new Puzzle([ //no turning back(?)
 ]);
 //sequence blocks
 var puzzle_03b = new Puzzle([ //collect black
-".###.",
+".....",
 "s#{#e",
-".###."
+"....."
 ]);
 var puzzle_04b = new Puzzle([ //collect black & white
 ".....",
@@ -320,9 +320,9 @@ var puzzle_05b = new Puzzle([ //collect black -> white
 ]);
 
 var puzzle_06b = new Puzzle([ //collect black -> white!
-".#{#.",
+".##{.",
 "s###e",
-".#}#."
+".}##."
 ]);
 
 var puzzle_07b = new Puzzle([ //really drill this in your skull
