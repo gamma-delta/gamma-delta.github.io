@@ -164,17 +164,6 @@ function getWalkableAtPosition(posX, posY) {
 	return false;
 }
 
-/*
-Puzzle and tile codes
-. = empty space
-# = floor
-s = start
-e = end
-{ , } = order blocks: 
-	A: Collect all {, then } or vice versa
-	B: Collect {, then }
-*/
-
 function Puzzle(lines) {
 	var _length = lines[0].length; //the width of the puzzle
 	var validInput = true;
@@ -215,6 +204,18 @@ function Puzzle(lines) {
 	
 	this.nextPuzzle = null;
 }
+
+/*
+Puzzle and tile codes
+. = empty space
+# = floor
+s = start
+e = end
+{ , } = sequence tiles: 
+	A: Collect all {, then } or vice versa
+	B: Collect {, then }
+
+*/
 
 //Asides
 //intro
@@ -266,10 +267,17 @@ var puzzle_08a = new Puzzle([//iterate
 "s###e",
 "###}#"
 ]);
-var puzzle_09a = new Puzzle([//one final challenge, to make sure you understand
+var puzzle_09a = new Puzzle([//iterate
 "s{###",
 "}#}##",
 "###}e"
+]);
+var puzzle_10a = new Puzzle([ //and, one final mastery challenge
+"}##{##{",
+"##{e{##",
+"####}##",
+"{#}##}#",
+"s{#####"
 ]);
 
 puzzle_00a.nextPuzzle = puzzle_01a;
@@ -281,7 +289,8 @@ puzzle_05a.nextPuzzle = puzzle_06a;
 puzzle_06a.nextPuzzle = puzzle_07a;
 puzzle_07a.nextPuzzle = puzzle_08a;
 puzzle_08a.nextPuzzle = puzzle_09a;
-puzzle_09a.nextPuzzle = puzzle_00a;
+puzzle_09a.nextPuzzle = puzzle_10a;
+puzzle_10a.nextPuzzle = puzzle_00a;
 
 //Bsides
 
