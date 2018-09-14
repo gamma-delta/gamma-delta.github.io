@@ -237,9 +237,9 @@ var puzzle_02a = new Puzzle([//no turning back
 ]);
 //sequence blocks
 var puzzle_03a = new Puzzle([//collect the sequence tiles
-".###.",
+".....",
 "s#{#e",
-".###."
+"....."
 ]);
 var puzzle_04a = new Puzzle([//collect all tiles
 ".#{#.",
