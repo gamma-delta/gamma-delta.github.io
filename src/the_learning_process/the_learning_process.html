@@ -49,16 +49,24 @@
 				<canvas id="canvas"></canvas>
 			</div>
 			<div style = "overflow: hidden; position: relative; left: 10px;">
-				<h3>Controls:</h3>
-				<ul>
-					<li>WASD or Arrow Keys: Move
-					<li>R: Restart
-				</ul>
-				<p>If you try to complete a level incorrectly, <br>the tiles you did wrong will flash red.</p>
+				<div id="controls">
+					<h3>Controls:</h3>
+					<ul>
+						<li>WASD or Arrow Keys: Move
+						<li>R: Restart
+					</ul>
+					<p>If you try to complete a level incorrectly, <br>the tiles you did wrong will flash red.</p>
+				</div>
+				<div id="win">
+					<h3>Congratulations!</h3>
+					<p>You win!</p>
+					<p>The puzzles after this are just for fun, <br>and to give you something to do if you finished early.</p>
+				</div>
 			</div>
 		</div>
 		
 	</div>
+	<script type="text/javascript" src="../../lodash.js"></script>
 	<script type="text/javascript" src="the_learning_process.js"></script>
 </body>
 

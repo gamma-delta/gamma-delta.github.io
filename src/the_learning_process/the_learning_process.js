@@ -1,10 +1,11 @@
 let TILE_PX_SIZE = 48;
 let FPS = (1 / 30) * 1000; //30 fps
-let ERROR_COOLDOWN_TIME = 90; //60 frames, 2 seconds
+let ERROR_COOLDOWN_TIME = 60; //60 frames, 2 seconds
 
 document.getElementById("passcode_end").style.display = "none";
 document.getElementById("game").style.display = "none";
 document.getElementById("bside_site").style.display = "none";
+document.getElementById("win").style.display = "none";
 
 function startGame(side) {
 	console.log("Starting side: "+side);
@@ -286,9 +287,9 @@ var puzzle_07a = new Puzzle([//all of one color first
 "#{#{#"
 ]);
 var puzzle_08a = new Puzzle([//iterate
-".{#{.",
+".}#}.",
 "s###e",
-"###}#"
+"###{#"
 ]);
 var puzzle_09a = new Puzzle([//iterate
 "s{###",
@@ -310,11 +311,66 @@ var puzzle_11a = new Puzzle([ //ooh, a new tile!
 "..#..",
 "..s.."
 ]);
+var puzzle_12a = new Puzzle([ //ooh, different directions
+".###.",
+"s#>#e",
+".###."
+]);
+var puzzle_13a = new Puzzle([ //in front, out back!
+".###.",
+"s#V#e",
+".###."
+]);
+var puzzle_14a = new Puzzle([ //all 4 directions, collect every single one, in front, out back
+"##<#s",
+"#####",
+"##V##",
+"#####",
+"e####",
+]);
+var puzzle_15a = new Puzzle([ //a little fun
+"s#<##",
+"V####",
+"#Ve^#",
+"####^",
+"##>##"
+]);
+var puzzle_16a = new Puzzle([ //working with both sets of tiles now
+"{###e",
+"##V##",
+"s###}"
+]);
+var puzzle_17a = new Puzzle([ //symmetry
+"{###e",
+"#{V}#",
+"s###}"
+]);
 
-puzzle_00a.nextPuzzle = puzzle_01a;
+var puzzle_wina = new Puzzle([
+"#...#.#####.#...#",
+".#.#..#...#.#...#",
+"..#...#...#.#...#",
+"..#...#...#.#...#",
+"..#...#####.#####",
+".................",
+"s###############e",
+".................",
+"#...#.#####.#...#",
+"#...#...#...##..#",
+"#.#.#...#...#.#.#",
+"#.#.#...#...#..##",
+"#####.#####.#...#"
+]);
+
+var puzzle_b0a = new Puzzle([ //bonus 0a
+"s",
+"e"
+]);
+
+puzzle_00a.nextPuzzle = puzzle_01a; //intro
 puzzle_01a.nextPuzzle = puzzle_02a;
 puzzle_02a.nextPuzzle = puzzle_03a;
-puzzle_03a.nextPuzzle = puzzle_04a;
+puzzle_03a.nextPuzzle = puzzle_04a; //sequence
 puzzle_04a.nextPuzzle = puzzle_05a;
 puzzle_05a.nextPuzzle = puzzle_06a;
 puzzle_06a.nextPuzzle = puzzle_07a;
@@ -322,7 +378,15 @@ puzzle_07a.nextPuzzle = puzzle_08a;
 puzzle_08a.nextPuzzle = puzzle_09a;
 puzzle_09a.nextPuzzle = puzzle_10a;
 puzzle_10a.nextPuzzle = puzzle_11a;
-puzzle_11a.nextPuzzle = puzzle_00a;
+puzzle_11a.nextPuzzle = puzzle_12a; //arrow
+puzzle_12a.nextPuzzle = puzzle_13a;
+puzzle_13a.nextPuzzle = puzzle_14a;
+puzzle_14a.nextPuzzle = puzzle_15a;
+puzzle_15a.nextPuzzle = puzzle_16a;
+puzzle_16a.nextPuzzle = puzzle_17a;
+puzzle_17a.nextPuzzle = puzzle_wina;
+
+puzzle_wina.nextPuzzle = puzzle_b0a;
 
 //Bsides
 
@@ -355,45 +419,93 @@ var puzzle_04b = new Puzzle([ //collect black & white
 "....."
 ]);
 var puzzle_05b = new Puzzle([ //collect black -> white
-"#{###",
+"##{##",
 "s###e",
-"###}#"
+"##}##"
 ]);
-
 var puzzle_06b = new Puzzle([ //collect black -> white!
+"##}##",
+"s###e",
+"##{##"
+]);
+var puzzle_07b = new Puzzle([ //really drill this in your skull
 "###{#",
 "s###e",
 "#}###"
 ]);
-
-var puzzle_07b = new Puzzle([ //really drill this in your skull
-"#{#{#",
-"s###e",
-"#}#}#"
-]);
-
 var puzzle_08b = new Puzzle([ //different numbers
 "##{##",
 "s###e",
 ".}#}."
 ]);
-
-var puzzle_09b = new Puzzle([ //one final test of mastery
-"s###{",
-"}#{##",
-"e}##{"
+var puzzle_09b = new Puzzle([ //more black -> white
+"s{##{",
+"}####",
+"##}#e"
+]);
+var puzzle_10b = new Puzzle([ //a test of skill
+"s}###",
+"#####",
+"#{e##",
+"##}##",
+"{###}"
+]);
+var puzzle_11b = new Puzzle([ //ooh, a new tile type!
+".....",
+"s#>#e",
+"....."
 ]);
 
-puzzle_00b.nextPuzzle = puzzle_01b;
+var puzzle_12b = new Puzzle([ //you can enter from whatever side
+"e#<..",
+"..#..",
+"..^#s"
+]);
+
+var puzzle_13b = new Puzzle([ //a small space to experiment in
+"s##>e",
+"V####",
+">####",
+"..V##",
+"..###"
+]);
+
+var puzzle_winb = new Puzzle([
+"#...#.#####.#...#",
+".#.#..#...#.#...#",
+"..#...#...#.#...#",
+"..#...#...#.#...#",
+"..#...#####.#####",
+".................",
+"s###############e",
+".................",
+"#...#.#####.#...#",
+"#...#...#...##..#",
+"#.#.#...#...#.#.#",
+"#.#.#...#...#..##",
+"#####.#####.#...#"
+]);
+var puzzle_b0b = new Puzzle([
+"s",
+"e"
+]);
+
+puzzle_00b.nextPuzzle = puzzle_01b; //intro
 puzzle_01b.nextPuzzle = puzzle_02b;
 puzzle_02b.nextPuzzle = puzzle_03b;
-puzzle_03b.nextPuzzle = puzzle_04b;
+puzzle_03b.nextPuzzle = puzzle_04b; //sequence
 puzzle_04b.nextPuzzle = puzzle_05b;
 puzzle_05b.nextPuzzle = puzzle_06b;
 puzzle_06b.nextPuzzle = puzzle_07b;
 puzzle_07b.nextPuzzle = puzzle_08b;
 puzzle_08b.nextPuzzle = puzzle_09b;
-puzzle_09b.nextPuzzle = puzzle_00b;
+puzzle_09b.nextPuzzle = puzzle_10b;
+puzzle_10b.nextPuzzle = puzzle_11b; //arrow
+puzzle_11b.nextPuzzle = puzzle_12b;
+puzzle_12b.nextPuzzle = puzzle_13b;
+puzzle_13b.nextPuzzle = puzzle_winb;
+
+puzzle_winb.nextPuzzle = puzzle_b0b;
 
 var current_puzzle;
 
@@ -432,7 +544,6 @@ function advancePuzzle(checkErrors = true) {
 			if (_fadeBlack <= 0) {
 				_fadeSwitch = false;
 				loadPuzzle(current_puzzle);
-				console.log("Resetting errors...");
 			}
 			
 			if (_fadeBlack >= 1 && !_fadeSwitch) {
@@ -447,10 +558,12 @@ function advancePuzzle(checkErrors = true) {
 	if (player.side === "a") {
 		//puzzle check variables
 		var _sequenceTilesCrossed = 0;
+		var _arrowTilesCrossed = 0;
+		
 		var _sequenceSide = null;
 		var _sequenceSideChanged = false;
 		
-		for (var i in player.tilesWalked) {
+		for (var i = 0; i < player.tilesWalked.length; i++) { //yes i have to do it the long way
 			var _tile = player.tilesWalked[i];
 			//sequence blocks
 			if (_tile.type === "{" || _tile.type === "}") {
@@ -471,6 +584,33 @@ function advancePuzzle(checkErrors = true) {
 				_tile.hasError = true;
 				_success = false;
 			}
+			
+			//arrow blocks
+			if (_tile.type === "^" || _tile.type === "<" || _tile.type === ">" || _tile.type === "V") {
+				_arrowTilesCrossed++;
+			}
+			if (_tile.type === "^") {
+				if ( _tile.y + 1 !== player.tilesWalked[i-1].y || _tile.y - 1 !== player.tilesWalked[i+1].y ) {
+					//if the tile I just walked on isn't below this one or the tile I walked on afterward isn't above
+					_tile.hasError = true;
+					_success = false;
+				}
+			} else if (_tile.type === "<") {
+				if ( _tile.x + 1 !== player.tilesWalked[i-1].x || _tile.x - 1 !== player.tilesWalked[i+1].x ) {
+					_tile.hasError = true;
+					_success = false;
+				}
+			} else if (_tile.type === ">") {
+				if ( _tile.x - 1 !== player.tilesWalked[i-1].x || _tile.x + 1 !== player.tilesWalked[i+1].x ) {
+					_tile.hasError = true;
+					_success = false;
+				}
+			} else if (_tile.type === "V") {
+				if ( _tile.y - 1 !== player.tilesWalked[i-1].y || _tile.y + 1 !== player.tilesWalked[i+1].y) {
+					_tile.hasError = true;
+					_success = false;
+				}
+			}
 		}
 		//test the things at the end of the puzzle
 
@@ -485,20 +625,37 @@ function advancePuzzle(checkErrors = true) {
 			_success = false;
 		}
 		
+		//check for every arrow tile
+		if (_arrowTilesCrossed !== current_puzzle.arrowTileCount) {
+			for (var i in current_puzzle.tiles) {
+				if (!(player.tilesWalked.includes(current_puzzle.tiles[i])) && 
+				(current_puzzle.tiles[i].type === "^" || current_puzzle.tiles[i].type === "<" ||
+				current_puzzle.tiles[i].type === ">" || current_puzzle.tiles[i].type === "V")) {
+					current_puzzle.tiles[i].hasError = true;
+				}
+			}
+			_success = false;
+		}
+		
 	} else { //check the b-side
 		//check vars
+		var _arrowTilesCrossed = 0;
 		var _sequenceTilesCrossed = 0;
+		
 		var _sequenceSide = null;
 		var _sequenceSideChanged = false;
 		
-		for (var i in player.tilesWalked) {
+		for (var i = 0; i < player.tilesWalked.length; i++) {
 			var _tile = player.tilesWalked[i];
 			
 			//sequence tiles
 			if (_tile.type === "{" || _tile.type === "}") {
 				_sequenceTilesCrossed++;
 			}
-			if (_tile.type === "}" && _sequenceSide === null) { //going on white first
+			if (_tile.type === "}" && _sequenceSide === null) { //going on white first?!
+				for (var j in player.tilesWalked) { //all sequences are errors
+					if (player.tilesWalked[j].type === "{" || player.tilesWalked[j].type === "}") {player.tilesWalked[j].hasError = true;}
+				}
 				_success = false;
 			} else if (_tile.type === "{" && _sequenceSide === null) { //going on black first
 				_sequenceSide = "black";
@@ -509,13 +666,53 @@ function advancePuzzle(checkErrors = true) {
 				_tile.hasError = true;
 				_success = false;
 			}
-		}
 			
-			//check if we've crossed all the sequence tiles
+			//arrow tiles
+			if (_tile.type === "^" || _tile.type === "<" || _tile.type === ">" || _tile.type === "V") {
+				_arrowTilesCrossed++;
+			}
+			if (_tile.type === "^") {
+				if (_tile.y - 1 !== player.tilesWalked[i+1].y) {
+					//if the next tile I walked on isn't above this one
+					_tile.hasError = true;
+					_success = false;
+				}
+			} else if (_tile.type === "<") {
+				if (_tile.x - 1 !== player.tilesWalked[i+1].x) {
+					_tile.hasError = true;
+					_success = false;
+				}
+			} else if (_tile.type === ">") {
+				if (_tile.x + 1 !== player.tilesWalked[i+1].x) {
+					_tile.hasError = true;
+					_success = false;
+				}
+			} else if (_tile.type === "V") {
+				if (_tile.y + 1 !== player.tilesWalked[i+1].y) {
+					_tile.hasError = true;
+					_success = false;
+				}
+			}
+		}
+		//check end-of-puzzle things
+			
+		//check if we've crossed all the sequence tiles
 		if (_sequenceTilesCrossed !== current_puzzle.sequenceTileCount) {
 			for (var i in current_puzzle.tiles) {
 				if (!(player.tilesWalked.includes(current_puzzle.tiles[i])) && 
 				(current_puzzle.tiles[i].type === "{" || current_puzzle.tiles[i].type === "}")) {
+					current_puzzle.tiles[i].hasError = true;
+				}
+			}
+			_success = false;
+		}
+		
+		//check to cross every arrow tile
+		if (_arrowTilesCrossed !== current_puzzle.arrowTileCount) {
+			for (var i in current_puzzle.tiles) {
+				if (!(player.tilesWalked.includes(current_puzzle.tiles[i])) && 
+				(current_puzzle.tiles[i].type === "^" || current_puzzle.tiles[i].type === "<" ||
+				current_puzzle.tiles[i].type === ">" || current_puzzle.tiles[i].type === "V")) {
 					current_puzzle.tiles[i].hasError = true;
 				}
 			}
@@ -538,6 +735,11 @@ function advancePuzzle(checkErrors = true) {
 			if (_fadeBlack <= 0) {
 				_fadeSwitch = false;
 				loadPuzzle(current_puzzle.nextPuzzle);
+				if (_.isEqual(current_puzzle, puzzle_wina) || _.isEqual(current_puzzle, puzzle_winb)) {
+					//activate win text
+					document.getElementById("win").style.display = "block";
+					document.getElementById("controls").style.display = "none";
+				}
 			}
 			
 			if (_fadeBlack === 1 && !_fadeSwitch) {
