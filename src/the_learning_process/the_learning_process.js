@@ -1,6 +1,7 @@
 let TILE_PX_SIZE = 48;
 let FPS = (1 / 30) * 1000; //30 fps
 let ERROR_COOLDOWN_TIME = 60; //60 frames, 2 seconds
+var border_error_cooldown = 0;
 
 document.getElementById("passcode_end").style.display = "none";
 document.getElementById("game").style.display = "none";
@@ -340,10 +341,17 @@ var puzzle_16a = new Puzzle([ //working with both sets of tiles now
 "##V##",
 "s###}"
 ]);
-var puzzle_17a = new Puzzle([ //symmetry
+var puzzle_17a = new Puzzle([ //harder now
 "{###e",
 "#{V}#",
 "s###}"
+]);
+var puzzle_18a = new Puzzle([ //a challenge
+"}####{#",
+"#}>####",
+"}####V#",
+"#<##{##",
+"#e}#s##"
 ]);
 
 var puzzle_wina = new Puzzle([
@@ -384,7 +392,8 @@ puzzle_13a.nextPuzzle = puzzle_14a;
 puzzle_14a.nextPuzzle = puzzle_15a;
 puzzle_15a.nextPuzzle = puzzle_16a;
 puzzle_16a.nextPuzzle = puzzle_17a;
-puzzle_17a.nextPuzzle = puzzle_wina;
+puzzle_17a.nextPuzzle = puzzle_18a;
+puzzle_18a.nextPuzzle = puzzle_wina;
 
 puzzle_wina.nextPuzzle = puzzle_b0a;
 
@@ -455,19 +464,41 @@ var puzzle_11b = new Puzzle([ //ooh, a new tile type!
 "s#>#e",
 "....."
 ]);
-
 var puzzle_12b = new Puzzle([ //you can enter from whatever side
 "e#<..",
 "..#..",
 "..^#s"
 ]);
-
 var puzzle_13b = new Puzzle([ //a small space to experiment in
 "s##>e",
-"V####",
+"V##^<",
 ">####",
 "..V##",
 "..###"
+]);
+var puzzle_14b = new Puzzle([ //a small challenge
+"s####",
+"#^.>#",
+"#...#",
+"#####",
+">###e"
+]);
+var puzzle_15b = new Puzzle([ //intro to both tiles
+"#{###",
+"s#>#e",
+"#}#}#"
+]);
+var puzzle_16b = new Puzzle([ //work with both
+"s}##}",
+"##V##",
+"{###e"
+]);
+var puzzle_17b = new Puzzle([ //challenge
+"{###V",
+"s###}",
+"##}##",
+"#>#{#",
+"{##e#"
 ]);
 
 var puzzle_winb = new Puzzle([
@@ -503,8 +534,11 @@ puzzle_09b.nextPuzzle = puzzle_10b;
 puzzle_10b.nextPuzzle = puzzle_11b; //arrow
 puzzle_11b.nextPuzzle = puzzle_12b;
 puzzle_12b.nextPuzzle = puzzle_13b;
-puzzle_13b.nextPuzzle = puzzle_winb;
-
+puzzle_13b.nextPuzzle = puzzle_14b;
+puzzle_14b.nextPuzzle = puzzle_15b;
+puzzle_15b.nextPuzzle = puzzle_16b;
+puzzle_16b.nextPuzzle = puzzle_17b;
+puzzle_17b.nextPuzzle = puzzle_winb;
 puzzle_winb.nextPuzzle = puzzle_b0b;
 
 var current_puzzle;
@@ -517,12 +551,13 @@ function loadPuzzle(puzzle) {
 	for (var i in current_puzzle.tiles) {
 		current_puzzle.tiles[i].walked = current_puzzle.tiles[i].walkedMax;
 	}
+	border_error_cooldown = 0;
 	
 	player.x = current_puzzle.playerX;
 	player.y = current_puzzle.playerY;
 	getTileAtPosition(player.x, player.y).walked = 0;
 	player.tilesWalked = [];
-	player.tilesWalked.push(getTileAtPosition(player.x, player.y));
+	player.tilesWalked.push(getTileAtPosition(player.x, player.y))
 }
 
 function advancePuzzle(checkErrors = true) {
@@ -766,12 +801,13 @@ function advancePuzzle(checkErrors = true) {
 				for (var i in current_puzzle.tiles) {
 					if (current_puzzle.tiles[i].hasError) { current_puzzle.tiles[i].errorCooldown = ERROR_COOLDOWN_TIME; }
 				}
+				border_error_cooldown = ERROR_COOLDOWN_TIME;
 			}
 			
 			if (_fadeBlack === 1 && !_fadeSwitch) {
 				clearInterval(_fadeInterval);
 			}
-			document.getElementById("canvas").style.filter = "brightness(" + _fadeBlack + ")";
+			canvas.style.filter = "brightness(" + _fadeBlack + ")";
 		}, FPS);
 	}
 }
@@ -779,13 +815,23 @@ function advancePuzzle(checkErrors = true) {
 var _authCooldown = 100;
 function updateGameArea() {
 	gameArea.clear();
+	
 	for (var i = 0; i < current_puzzle.tiles.length; i++) {
 		current_puzzle.tiles[i].update();
 	}
 	player.update();
+	
 	if (_authCooldown > 0) {
 		_authCooldown--;
 	} else if (_authCooldown === 0) {
 		document.getElementById("passcode").style.display = "none";
 	}
+	
+	if (border_error_cooldown > 0) { border_error_cooldown--; }
+	if ((Math.floor( 1 + border_error_cooldown / 4) % 2) === 0) {
+		canvas.style.border = "2px solid red"; //red error
+	} else {
+		canvas.style.border = "2px solid #7B7985";
+	}
+	
 }
