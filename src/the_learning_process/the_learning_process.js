@@ -3,6 +3,23 @@ let FPS = (1 / 30) * 1000; //30 fps
 let ERROR_COOLDOWN_TIME = 60; //60 frames, 2 seconds
 var border_error_cooldown = 0;
 
+var images = [];
+function preload() {
+    for (var i = 0; i < arguments.length; i++) {
+        images[i] = new Image();
+        images[i].src = "textures/" + preload.arguments[i] + ".png";
+    }
+}
+preload(
+	"start", "start-w", "end", "end-w", "floor", "floor-w", "blank",
+	"sequence_b", "sequence_b-w", "sequence_b-e",
+	"sequence_w", "sequence_w-w", "sequence_w-e",
+    "arrow_down", "arrow_down-w", "arrow_down-e",
+	"arrow_left", "arrow_left-w", "arrow_left-e",
+	"arrow_right", "arrow_right-w", "arrow_right-e",
+	"arrow_up", "arrow_up-w", "arrow_up-e",
+);
+
 document.getElementById("passcode_end").style.display = "none";
 document.getElementById("game").style.display = "none";
 document.getElementById("bside_site").style.display = "none";
@@ -479,9 +496,9 @@ var puzzle_11b = new Puzzle([ //ooh, a new tile type!
 "....."
 ]);
 var puzzle_12b = new Puzzle([ //you can enter from whatever side
-"e#<..",
+"s#V..",
 "..#..",
-"..^#s"
+"..>#e"
 ]);
 var puzzle_13b = new Puzzle([ //a small space to experiment in
 "s##>e",
@@ -516,18 +533,20 @@ var puzzle_17b = new Puzzle([ //challenge
 ">###}#e"
 ]);
 var puzzle_18b = new Puzzle([ //challenge
-"{###V",
-"s###}",
-"##}##",
-"#>#{#",
-"{##e#"
-]);
-var puzzle_19b = new Puzzle([ //finale
 "s##.>#{",
 "#######",
 "###.}##",
 "{#}####",
 "e<#.#}{"
+]);
+var puzzle_19b = new Puzzle([ //finale
+"s#{.##}.}#V",
+"###########",
+"{##.{##.##}",
+".#...^...#.",
+"###.##{.#}#",
+"{########e#",
+"#^#.>##.}##"
 ]);
 
 var puzzle_winb = new Puzzle([
@@ -548,6 +567,16 @@ var puzzle_winb = new Puzzle([
 var puzzle_b0b = new Puzzle([
 "s",
 "e"
+]);
+
+var puzzle_bigpuzzle = new Puzzle([
+"s###{##",
+".V####e",
+".####{#",
+".}#####",
+"####^##",
+"##>####",
+"}#..##}"
 ]);
 
 puzzle_00b.nextPuzzle = puzzle_01b; //intro
