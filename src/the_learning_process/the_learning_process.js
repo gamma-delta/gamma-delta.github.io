@@ -240,6 +240,11 @@ e = end
 ^, <, >, V = arrow tiles:
 	A: You must walk straight through every one of them
 	B: You must exit on that side.
+1, 2, 3, 4 = number tiles:
+	Cannot be walked on
+	A: Bordered by that many tiles or more
+	B: Bordered by exactly that many tiles
+	
 */
 
 //Asides
@@ -336,6 +341,7 @@ var puzzle_15a = new Puzzle([ //a little fun
 "####^",
 "##>##"
 ]);
+//both
 var puzzle_16a = new Puzzle([ //working with both sets of tiles now
 "{###e",
 "##V##",
@@ -352,6 +358,13 @@ var puzzle_18a = new Puzzle([ //a challenge
 "}####V#",
 "#<##{##",
 "#e}#s##"
+]);
+var puzzle_19a = new Puzzle([ //the last level
+"s#.###}.##e",
+"##>#.#####}",
+"{###.##<###",
+"##<#.######",
+"#{#####.#{#"
 ]);
 
 var puzzle_wina = new Puzzle([
@@ -391,9 +404,10 @@ puzzle_12a.nextPuzzle = puzzle_13a;
 puzzle_13a.nextPuzzle = puzzle_14a;
 puzzle_14a.nextPuzzle = puzzle_15a;
 puzzle_15a.nextPuzzle = puzzle_16a;
-puzzle_16a.nextPuzzle = puzzle_17a;
+puzzle_16a.nextPuzzle = puzzle_17a; //both
 puzzle_17a.nextPuzzle = puzzle_18a;
-puzzle_18a.nextPuzzle = puzzle_wina;
+puzzle_18a.nextPuzzle = puzzle_19a; 
+puzzle_19a.nextPuzzle = puzzle_wina;
 
 puzzle_wina.nextPuzzle = puzzle_b0a;
 
@@ -481,24 +495,39 @@ var puzzle_14b = new Puzzle([ //a small challenge
 "#^.>#",
 "#...#",
 "#####",
-">###e"
+"##>#e"
 ]);
-var puzzle_15b = new Puzzle([ //intro to both tiles
-"#{###",
-"s#>#e",
-"#}#}#"
-]);
-var puzzle_16b = new Puzzle([ //work with both
+//both
+var puzzle_15b = new Puzzle([ //work with both
 "s}##}",
 "##V##",
 "{###e"
 ]);
+var puzzle_16b = new Puzzle([ //intro to both tiles
+"#{###",
+"s#>#e",
+"#}#}#"
+]);
 var puzzle_17b = new Puzzle([ //challenge
+"s#>###{",
+"#.#.#.#",
+"#{#####",
+"#.#.#.#",
+">###}#e"
+]);
+var puzzle_18b = new Puzzle([ //challenge
 "{###V",
 "s###}",
 "##}##",
 "#>#{#",
 "{##e#"
+]);
+var puzzle_19b = new Puzzle([ //finale
+"s##.>#{",
+"#######",
+"###.}##",
+"{#}####",
+"e<#.#}{"
 ]);
 
 var puzzle_winb = new Puzzle([
@@ -535,10 +564,12 @@ puzzle_10b.nextPuzzle = puzzle_11b; //arrow
 puzzle_11b.nextPuzzle = puzzle_12b;
 puzzle_12b.nextPuzzle = puzzle_13b;
 puzzle_13b.nextPuzzle = puzzle_14b;
-puzzle_14b.nextPuzzle = puzzle_15b;
+puzzle_14b.nextPuzzle = puzzle_15b; //both
 puzzle_15b.nextPuzzle = puzzle_16b;
 puzzle_16b.nextPuzzle = puzzle_17b;
-puzzle_17b.nextPuzzle = puzzle_winb;
+puzzle_17b.nextPuzzle = puzzle_18b;
+puzzle_18b.nextPuzzle = puzzle_19b;
+puzzle_19b.nextPuzzle = puzzle_winb;
 puzzle_winb.nextPuzzle = puzzle_b0b;
 
 var current_puzzle;
@@ -620,7 +651,7 @@ function advancePuzzle(checkErrors = true) {
 				_success = false;
 			}
 			
-			//arrow blocks
+			//arrow tiles
 			if (_tile.type === "^" || _tile.type === "<" || _tile.type === ">" || _tile.type === "V") {
 				_arrowTilesCrossed++;
 			}
@@ -647,6 +678,7 @@ function advancePuzzle(checkErrors = true) {
 				}
 			}
 		}
+		
 		//test the things at the end of the puzzle
 
 		//check if we've crossed all the sequence tiles
@@ -729,6 +761,7 @@ function advancePuzzle(checkErrors = true) {
 				}
 			}
 		}
+		
 		//check end-of-puzzle things
 			
 		//check if we've crossed all the sequence tiles
