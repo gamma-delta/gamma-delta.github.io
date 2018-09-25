@@ -80,24 +80,28 @@ var player = {
 		var _didWalk = false;
 		switch(event.keyCode) {
 		case 37: case 65: //left
+			event.preventDefault();
 			if (getWalkableAtPosition(this.x - 1, this.y)) {
 				this.x--;
 				_didWalk = true;
 			}
 			break;
 		case 38: case 87: //up
+		event.preventDefault();
 			if (getWalkableAtPosition(this.x, this.y - 1)) {
 				this.y--;
 				_didWalk = true;
 			}
 			break;
 		case 39: case 68: //right
+		event.preventDefault();
 			if (getWalkableAtPosition(this.x + 1, this.y)) {
 				this.x++;
 				_didWalk = true;
 			}
 			break;
 		case 40: case 83: //down
+		event.preventDefault();
 			if (getWalkableAtPosition(this.x, this.y + 1)) {
 				this.y++;
 				_didWalk = true;
